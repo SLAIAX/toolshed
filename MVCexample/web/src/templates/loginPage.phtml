@@ -1,0 +1,16 @@
+<?php include "header.phtml" ?>
+<!---------- Body starts --------------->
+<h1>Welcome to Toolshed</h1>
+<form>
+    <p>
+        Username: <input type = "text" name = "username"><br>
+        Password: <input type = "password" name = "username"><br>
+    </p>
+
+</form>
+<a href="CHANGE ME">Login</a><br>
+
+Don't have an account? <a href=<?= $linkTo('accountCreate'); ?>>Register</a><br>
+<br>
+<!---------- Body ends -------------------->
+<?php include "footer.phtml" ?>
