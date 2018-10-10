@@ -1,6 +1,6 @@
 <?php
 namespace agilman\a2\controller;
-
+session_start();
 use agilman\a2\model\{AccountModel, AccountCollectionModel};
 use agilman\a2\view\View;
 
@@ -40,7 +40,7 @@ class AccountController extends Controller
             $account = new AccountModel($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);
             //$account->validate();
             $account->save();
-            //$this->redirect('loginPage');
+            $this->redirect('loginPage');
 //            $view = new View('accountCreated');
 //            echo $view->render();
         } catch (\Exception $e){
@@ -48,6 +48,15 @@ class AccountController extends Controller
             echo $view->render();
         }
     }
+
+    public function loginAction(){
+
+        //VALIDATE THIS FIRST
+        $_SESSION["username"] = $_POST["username"];
+        $view = new View('homePage');
+        echo $view->render();
+    }
+
 
     /**
      * Account Delete action

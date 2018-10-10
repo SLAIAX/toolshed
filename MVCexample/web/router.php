@@ -30,6 +30,50 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
+        '/login/submit',
+        array(
+            '_controller' => 'agilman\a2\controller\AccountController::loginAction',
+            'methods' => 'POST',
+            'name' => 'loginSubmit'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/browse',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::browseAction',
+            'methods' => 'GET',
+            'name' => 'browsePage'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/search',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::searchAction',
+            'methods' => 'GET',
+            'name' => 'searchPage'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/logout',
+        array(
+            '_controller' => 'agilman\a2\controller\HomeController::logoutAction',
+            'methods' => 'GET',
+            'name' => 'logoutAction'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
         '/search',
         array(
             '_controller' => 'agilman\a2\controller\SearchController::indexAction',

@@ -8,14 +8,15 @@
 <body>
 
 <h1>Welcome to Toolshed</h1>
-<form>
+<form action="<?= $linkTo('loginSubmit'); ?>" method="post">
     <p>
         Username: <input type = "text" name = "username"><br>
-        Password: <input type = "password" name = "username"><br>
+        Password: <input type = "password" name = "password"><br>
+        <input type = "submit" name = "login" value = "Log In"><br>
     </p>
 
 </form>
-<a href="CHANGE ME">Login</a><br>
+
 
 Don't have an account? <a href=<?= $linkTo('accountCreate'); ?>>Register</a><br>
 <br>

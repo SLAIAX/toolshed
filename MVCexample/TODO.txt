@@ -1,0 +1,10 @@
+-Validate Login		-AJAX
+-Validate User Create	-AJAX
+-Search Function	-AJAX
+-Create more sample data
+-Create the browse function
+-CSS
+
+
+PROBLEMS:
+

@@ -26,6 +26,7 @@ class AccountModel extends Model
      */
     public function __construct($name, $username, $email, $password)
     {
+        parent::__construct();
         $this->name = $name;
         $this->username = $username;
         $this->email = $email;
@@ -117,5 +118,9 @@ class AccountModel extends Model
         }
 
         return $this;
+    }
+
+    public function validateLogin(){
+
     }
 }

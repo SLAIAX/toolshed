@@ -2,7 +2,7 @@
 namespace agilman\a2\controller;
 use agilman\a2\model\Model;
 use agilman\a2\view\View;
-
+session_start();
 /**
  * Class HomeController
  *
@@ -22,7 +22,35 @@ class HomeController extends Controller
     }
 
     public function homeAction(){
-        $view = new View('homePage');
+        if(isset($_SESSION["username"])) {
+            $view = new View('homePage');
+            echo $view->render();
+        }else{
+            $this->redirect('loginPage');
+        }
+    }
+
+    public function browseAction(){
+        $view = new View('browsePage');
         echo $view->render();
+    }
+
+    public function searchAction(){
+        if(isset($_SESSION["username"])) {
+            $view = new View('searchPage');
+            echo $view->render();
+        }else{
+            $this->redirect('loginPage');
+        }
+    }
+
+    public function logoutAction(){
+        if(isset($_SESSION["username"])) {
+            unset($_SESSION["username"]);
+            $this->redirect('loginPage');
+        }else{
+            $this->redirect('loginPage');
+        }
+
     }
 }
