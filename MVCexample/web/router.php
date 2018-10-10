@@ -10,7 +10,7 @@ $collection->attachRoute(
     new Route(
         '/',
         array(
-            '_controller' => 'agilman\a2\controller\LoginController::indexAction',
+            '_controller' => 'agilman\a2\controller\HomeController::indexAction',
             'methods' => 'GET',
             'name' => 'loginPage'
         )
@@ -21,9 +21,20 @@ $collection->attachRoute(
     new Route(
         '/home',
         array(
-            '_controller' => 'agilman\a2\controller\HomeController::indexAction',
+            '_controller' => 'agilman\a2\controller\HomeController::homeAction',
             'methods' => 'GET',
             'name' => 'homePage'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/search',
+        array(
+            '_controller' => 'agilman\a2\controller\SearchController::indexAction',
+            'methods' => 'GET',
+            'name' => 'searchPage'
         )
     )
 );
@@ -43,7 +54,7 @@ $collection->attachRoute(
     new Route(
         '/account/create/',
         array(
-        '_controller' => 'agilman\a2\controller\AccountController::createAction',
+        '_controller' => 'agilman\a2\controller\AccountController::createPageAction',
         'methods' => 'GET',
         'name' => 'accountCreate'
         )
@@ -52,25 +63,15 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
-        '/account/delete/:id',
+        '/account/create/submit',
         array(
-        '_controller' => 'agilman\a2\controller\AccountController::deleteAction',
-        'methods' => 'GET',
-        'name' => 'accountDelete'
+            '_controller' => 'agilman\a2\controller\AccountController::createAction',
+            'methods' => 'POST',
+            'name' => 'accountCreateSubmit'
         )
     )
 );
 
-$collection->attachRoute(
-    new Route(
-        '/account/update/:id',
-        array(
-        '_controller' => 'agilman\a2\controller\AccountController::updateAction',
-        'methods' => 'GET',
-        'name' => 'accountUpdate'
-        )
-    )
-);
 
 $router = new Router($collection);
 $router->setBasePath('/');

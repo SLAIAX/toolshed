@@ -10,14 +10,27 @@ namespace agilman\a2\model;
  */
 class AccountModel extends Model
 {
-    /**
-     * @var integer Account ID
-     */
+
     private $id;
-    /**
-     * @var string Account Name
-     */
     private $name;
+    private $username;
+    private $email;
+    private $password;
+
+    /**
+     * AccountModel constructor.
+     * @param $name
+     * @param $username
+     * @param $email
+     * @param $password
+     */
+    public function __construct($name, $username, $email, $password)
+    {
+        $this->name = $name;
+        $this->username = $username;
+        $this->email = $email;
+        $this->password = $password;
+    }
 
 
     /**
@@ -76,20 +89,14 @@ class AccountModel extends Model
     public function save()
     {
         $name = $this->name ?? "NULL";
-        if (!isset($this->id)) {
-            // New account - Perform INSERT
-            if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name');")) {
-                // throw new ...
-            }
-            $this->id = $this->db->insert_id;
-        } else {
-            // saving existing account - perform UPDATE
-            if (!$result = $this->db->query("UPDATE `account` SET `name` = '$name' WHERE `id` = $this->id;")) {
-                // throw new ...
-            }
+        $username = $this->username;
+        $email = $this->email;
+        $password = $this->password;
+        // New account - Perform INSERT
+        if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name', '$username', '$email', '$password');")) {
+           throw new \mysqli_sql_exception();
         }
-
-        return $this;
+        $this->id = $this->db->insert_id;
     }
 
     /**

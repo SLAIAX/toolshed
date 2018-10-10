@@ -23,18 +23,30 @@ class AccountController extends Controller
         echo $view->addData('accounts', $accounts)->render();
     }
     /**
+     * Account Page Create action
+     */
+    public function createPageAction()
+    {
+        $view = new View('createAccountPage');
+        echo $view->render();
+    }
+
+    /**
      * Account Create action
      */
     public function createAction()
     {
-        $account = new AccountModel();
-        $names = ['Bob','Mary','Jon','Peter','Grace'];
-        shuffle($names);
-        $account->setName($names[0]); // will come from Form data
-        $account->save();
-        $id = $account->getId();
-        $view = new View('accountCreated');
-        echo $view->addData('accountId', $id)->render();
+        try {
+            $account = new AccountModel($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);
+            //$account->validate();
+            $account->save();
+            //$this->redirect('loginPage');
+//            $view = new View('accountCreated');
+//            echo $view->render();
+        } catch (\Exception $e){
+            $view = new View('createAccountPage');
+            echo $view->render();
+        }
     }
 
     /**
