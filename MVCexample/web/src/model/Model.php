@@ -12,7 +12,8 @@ use mysqli;
  */
 class Model
 {
-    protected $db;
+    //was protected
+    public $db;
 
     // is this the best place for these constants?
     const DB_HOST = 'mysql';
@@ -71,16 +72,19 @@ class Model
                 // handle appropriately
                 error_log("Failed creating sample data!", 0);
             }
-
+            if($this->db == NULL){
+                error_log("NO DB BRO", 100);
+            }
             $result = $this->db->query(
                 "CREATE TABLE `products` ( `id`  INT(8) unsigned NOT NULL AUTO_INCREMENT , 
                        `sku` VARCHAR(256) NOT NULL ,
                        `name` VARCHAR(256) NOT NULL ,
                        `category` VARCHAR(256) NOT NULL ,
                        `cost` VARCHAR(256) NOT NULL ,
-                       `stock_quantity` INT(256) NOT NULL ,
-                        PRIMARY KEY (`id`)) ;"
+                       `stock_quantity` INT(8) NOT NULL ,
+                        PRIMARY KEY (`id`));"
             );
+
             if (!$result) {
                 // handle appropriately
                 error_log("Failed creating table products", 0);
@@ -91,9 +95,10 @@ class Model
                 "INSERT INTO `products` VALUES (NULL,'ham13', 'Square Hammer', 'Hammers', '$39.95', 10);"
             )) {
                 // handle appropriately
-                error_log("Failed creating sample data!", 0);
+                error_log("Failed creating sample data for products!", 0);
             }
         }
         //----------------------------------------------------------------------------
     }
+
 }

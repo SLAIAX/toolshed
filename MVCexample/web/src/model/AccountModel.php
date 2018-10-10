@@ -30,6 +30,9 @@ class AccountModel extends Model
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
+        if($this->db == NULL){
+            error_log("DB is NULL in constructor", 100);
+        }
     }
 
 
@@ -93,10 +96,13 @@ class AccountModel extends Model
         $email = $this->email;
         $password = $this->password;
         // New account - Perform INSERT
+        if($this->db == NULL){
+            error_log("DB is NULL", 100);
+        }
         if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name', '$username', '$email', '$password');")) {
            throw new \mysqli_sql_exception();
         }
-        $this->id = $this->db->insert_id;
+        //$this->id = $this->db->insert_id;
     }
 
     /**
