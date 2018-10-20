@@ -52,9 +52,15 @@ class AccountController extends Controller
     public function loginAction(){
 
         //VALIDATE THIS FIRST
-        $_SESSION["username"] = $_POST["username"];
-        $view = new View('homePage');
-        echo $view->render();
+        $account = new AccountModel(null, $_POST['username'], null, $_POST['password']);
+        if($account->validateLogin()) {
+            $_SESSION["username"] = $_POST["username"];
+            $view = new View('homePage');
+            echo $view->render();
+        } else{
+
+            //error
+        }
     }
 
 

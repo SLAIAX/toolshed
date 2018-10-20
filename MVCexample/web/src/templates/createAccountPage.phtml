@@ -3,15 +3,37 @@
     <head>
         <meta charset="UTF-8">
         <title>Toolshed</title>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="/static/styles/site.css">
+        <script>
+            function checkUsername(str) {
+
+                if (str.length == 0) {
+                    document.getElementById("error").innerHTML = "";
+                    return;
+                } else {
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            document.getElementById("error").innerHTML = this.responseText;
+                        }
+                    };
+                    xmlhttp.open("GET", "CreateAccountController.php?q=" + str, true);
+
+                    xmlhttp.send();
+                }
+            }
+        </script>
     </head>
 <body>
+
 
 <h1>Create Account</h1>
 <form action="<?=$linkTo('accountCreateSubmit'); ?>" method = "post">
     <p>
-        Name: <input type = "text" name = "name"><br>
-        Username: <input type = "text" name = "username"><br>
+        Name: <input type = "text" name = "name""><br>
+        Username: <input type = "text" name = "username" onkeyup = "checkUsername(this.value)"><br>
+        <p id = "error"></p><br>
         Email: <input type = "text" name = "email"><br>
         Password: <input type = "password" name = "password"><br>
         Confirm Password: <input type = "password" name = "password_confirm"><br>

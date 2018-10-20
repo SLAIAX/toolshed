@@ -92,8 +92,23 @@ class Model
 
 
             if (!$this->db->query(
-                "INSERT INTO `products` VALUES (NULL,'ham13', 'Square Hammer', 'Hammers', '$39.95', 10);"
-            )) {
+                "INSERT INTO `products` (`id`, `sku`, `name`, `category`, `cost`, `stock_quantity`) VALUES 
+                                                        (NULL,'ham13', 'Square Hammer', 'Hammers', '$39.95', 10),
+                                                        (NULL,'ham14', 'MC Hammer', 'Hammers', '$39.95', 4),
+                                                        (NULL,'ham15', 'Claw Hammer', 'Hammers', '$39.95', 16),
+                                                        (NULL,'ham16', 'Ball-peen Hammer', 'Hammers', '$39.95', 39),
+                                                        (NULL,'spd13', 'Garden Shovel', 'Spades', '$39.95', 28),
+                                                        (NULL,'spd14', 'Garden Spade', 'Spades', '$39.95', 14),
+                                                        (NULL,'spd15', 'Snow Shovel', 'Spades', '$39.95', 57),
+                                                        (NULL,'spd16', 'Poop Scoop', 'Spades', '$39.95', 19),
+                                                        (NULL,'swd13', 'Philips Head', 'Screw Drivers', '$39.95', 160),
+                                                        (NULL,'swd14', 'Flat Head', 'Screw Drivers', '$39.95', 174),
+                                                        (NULL,'swd15', 'Alan Head', 'Screw Drivers', '$39.95', 73),
+                                                        (NULL,'swd16', 'Torx Head', 'Screw Drivers', '$39.95', 56),
+                                                        (NULL,'drl13', 'Twist Drill', 'Drills', '$39.95', 178),
+                                                        (NULL,'drl14', 'Brad Point Drill', 'Drills', '$39.95', 78),
+                                                        (NULL,'drl15', 'Auger Drill', 'Drills', '$39.95', 13),
+                                                        (NULL,'drl16', 'Spade Drill', 'Drills', '$39.95', 45);")) {
                 // handle appropriately
                 error_log("Failed creating sample data for products!", 0);
             }

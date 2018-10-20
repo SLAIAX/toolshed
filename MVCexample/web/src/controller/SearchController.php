@@ -18,4 +18,6 @@ class SearchController extends Controller
         $view = new View('searchPage');
         echo $view->render();
     }
+
+
 }
