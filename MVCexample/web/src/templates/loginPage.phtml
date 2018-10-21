@@ -7,19 +7,20 @@
         <link rel="stylesheet" type="text/css" href="/static/styles/site.css">
     </head>
 <body>
+<div class="container">
+    <h1>Welcome to Toolshed</h1>
+    <form action="<?= $linkTo('loginSubmit'); ?>" method="post">
+        <p>
+            Username: <input type = "text" class="form-control col-6" name = "username" placeholder="Username"><br>
+            Password: <input type = "password" class="form-control col-6" name = "password" placeholder="Password"><br>
+            <input type = "submit" name = "login" class="btn btn-primary" value = "Log In"><br>
+        </p>
+    </form>
 
-<h1>Welcome to Toolshed</h1>
-<form action="<?= $linkTo('loginSubmit'); ?>" method="post">
-    <p>
-        Username: <input type = "text" name = "username"><br>
-        Password: <input type = "password" name = "password"><br>
-        <input type = "submit" name = "login" value = "Log In"><br>
-    </p>
-
-</form>
 
 
-Don't have an account? <a href=<?= $linkTo('accountCreate'); ?>>Register</a><br>
+    Don't have an account? <a href=<?= $linkTo('accountCreate'); ?>>Register</a><br>
+</div>
 <br>
 <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>

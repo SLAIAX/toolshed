@@ -125,6 +125,9 @@ class AccountModel extends Model
             return FALSE;
         }
         $result = $result->fetch_assoc();
+        if(!$result){
+            return FALSE;
+        }
         $result = $result['password'];
         if($result == $this->password){
             return TRUE;

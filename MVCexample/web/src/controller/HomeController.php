@@ -31,8 +31,12 @@ class HomeController extends Controller
     }
 
     public function browseAction(){
-        $view = new View('browsePage');
-        echo $view->render();
+        if(isset($_SESSION["username"])) {
+            $view = new View('browsePage');
+            echo $view->render();
+        }else{
+            $this->redirect('loginPage');
+        }
     }
 
     public function searchAction(){

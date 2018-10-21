@@ -41,8 +41,8 @@ class AccountController extends Controller
             //$account->validate();
             $account->save();
             $this->redirect('loginPage');
-//            $view = new View('accountCreated');
-//            echo $view->render();
+            $view = new View('accountCreated');
+            echo $view->render();
         } catch (\Exception $e){
             $view = new View('createAccountPage');
             echo $view->render();
@@ -58,8 +58,8 @@ class AccountController extends Controller
             $view = new View('homePage');
             echo $view->render();
         } else{
-
-            //error
+            $view = new View('loginPage');
+            echo $view->render();
         }
     }
 

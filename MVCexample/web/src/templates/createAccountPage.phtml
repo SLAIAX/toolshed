@@ -18,31 +18,31 @@
                             document.getElementById("error").innerHTML = this.responseText;
                         }
                     };
-                    xmlhttp.open("GET", "CreateAccountController.php?q=" + str, true);
+                    xmlhttp.open("GET", "localhost:8000/validateUsername" + str, true);
 
                     xmlhttp.send();
                 }
             }
         </script>
     </head>
-<body>
+<div>
 
-
+<div class="container">
 <h1>Create Account</h1>
 <form action="<?=$linkTo('accountCreateSubmit'); ?>" method = "post">
     <p>
-        Name: <input type = "text" name = "name""><br>
-        Username: <input type = "text" name = "username" onkeyup = "checkUsername(this.value)"><br>
+        Name: <input type = "text" class="form-control col-6" name = "name" pattern="^[A-Za-z]+$" title="Must only contain Alphabetic characters" placeholder="Enter Name"><br>
+        Username: <input type = "text" class="form-control col-6" name = "username" onkeyup = "checkUsername(this.value)" placeholder="Enter Username"><br>
         <p id = "error"></p><br>
-        Email: <input type = "text" name = "email"><br>
-        Password: <input type = "password" name = "password"><br>
-        Confirm Password: <input type = "password" name = "password_confirm"><br>
-        <input type = "submit" name = "submit" value = "Create Account"><br>
+        Email: <input type = "text"class="form-control col-6"  name = "email" placeholder="Enter Email"><br>
+        Password: <input type = "password" class="form-control col-6" name = "password" placeholder="Enter Password"><br>
+        Confirm Password: <input type = "password" class="form-control col-6" name = "password_confirm" placeholder="Enter Password Again"><br>
+        <input type = "submit" name = "submit" class="btn btn-primary" value = "Create Account"><br>
     </p>
 
 </form>
 
-
+</div>
 <br>
 <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>

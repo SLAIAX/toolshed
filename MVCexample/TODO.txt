@@ -1,11 +1,15 @@
--Validate Login
 -Validate User Create	-AJAX
 -Search Function	-AJAX
--Create more sample data
 -Create the browse function
 -CSS
 -DELETE supplied code that's unused
-
+-Login Javascript to prevent submission of blank fields
+-Back button from Account Create Page
+-Re-size logo and put in header
+-Active page
+-REGEX for email, password and username
 
 PROBLEMS:
 
+-Php isn't being linked to form JS
+-
