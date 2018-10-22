@@ -1,13 +1,13 @@
--Validate User Create	-AJAX
--Search Function	-AJAX
+-Search Function - Blank query fix
 -Create the browse function
 -CSS
 -DELETE supplied code that's unused
--Login Javascript to prevent submission of blank fields
--Back button from Account Create Page
 -Re-size logo and put in header
 -Active page
--REGEX for email, password and username
+-Encrypt Passwords
+-Throw Errors
+-Refactor JS into seperate files
+-LiveSearch empty input/no matches
 
 PROBLEMS:
 

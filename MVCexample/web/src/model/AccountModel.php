@@ -122,7 +122,7 @@ class AccountModel extends Model
 
     public function validateLogin(){
         if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$this->username';")){
-            return FALSE;
+            return FALSE;   //Throw
         }
         $result = $result->fetch_assoc();
         if(!$result){
@@ -132,5 +132,16 @@ class AccountModel extends Model
         if($result == $this->password){
             return TRUE;
         }
+    }
+
+    public function availableUserName(){
+        if(!$result = $this->db->query("SELECT username FROM `account` WHERE `username` = '$this->username';")){
+            return TRUE;        //Throw
+        }
+        $result = $result->fetch_assoc();
+        if(!$result){
+            return TRUE;
+        }
+        return FALSE;
     }
 }

@@ -85,4 +85,19 @@ class AccountController extends Controller
         $account = (new AccountModel())->load($id);
         $account->setName('Joe')->save(); // new name will come from Form data
     }
+
+    public function validateAccNameAction(){
+// get the q parameter from URL
+        $q =  $_REQUEST["q"];
+        $account = new AccountModel(null, $q, null,null);
+
+// lookup all hints from array if $q is different from ""
+        if($account->availableUserName()){
+            echo "Username Available";
+        } else{
+            echo  "Username taken. Please choose another.";
+        }
+// Output "no suggestion" if no hint was found or output correct values
+
+    }
 }

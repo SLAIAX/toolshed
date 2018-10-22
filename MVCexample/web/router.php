@@ -30,6 +30,28 @@ $collection->attachRoute(
 
 $collection->attachRoute(
     new Route(
+        '/accountNameValidate',
+        array(
+            '_controller' => 'agilman\a2\controller\AccountController::validateAccNameAction',
+            'methods' => 'GET',
+            'name' => 'accountNameValidate'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
+        '/searchQuery',
+        array(
+            '_controller' => 'agilman\a2\controller\SearchController::searchAction',
+            'methods' => 'GET',
+            'name' => 'searchQuery'
+        )
+    )
+);
+
+$collection->attachRoute(
+    new Route(
         '/login/submit',
         array(
             '_controller' => 'agilman\a2\controller\AccountController::loginAction',

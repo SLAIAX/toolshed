@@ -1,5 +1,6 @@
 <?php
 namespace agilman\a2\model;
+use agilman\a2\model\ProductsModel;
 
 /**
  * Class AccountCollectionModel
@@ -7,7 +8,7 @@ namespace agilman\a2\model;
  * @package agilman/a2
  * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
-class AccountCollectionModel extends Model
+class ProductsCollectionModel extends Model
 {
     private $accountIds;
 
@@ -16,7 +17,7 @@ class AccountCollectionModel extends Model
     public function __construct()
     {
         parent::__construct();
-        if (!$result = $this->db->query("SELECT `id` FROM `account`;")) {
+        if (!$result = $this->db->query("SELECT `id` FROM `products`;")) {
             // throw new ...
         }
         $this->accountIds = array_column($result->fetch_all(), 0);
@@ -28,12 +29,12 @@ class AccountCollectionModel extends Model
      *
      * @return \Generator|AccountModel[] Accounts
      */
-    public function getAccounts()
+    public function getProducts($str)
     {
         foreach ($this->accountIds as $id) {
             // Use a generator to save on memory/resources
             // load accounts from DB one at a time only when required
-            yield (new AccountModel())->load($id);
+            yield (new ProductsModel())->searchProducts($str, $id);
         }
     }
 }
