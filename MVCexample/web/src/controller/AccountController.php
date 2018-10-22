@@ -40,12 +40,14 @@ class AccountController extends Controller
 
     public function loginAction(){
         try {
+            unset($_SESSION["login"]);
             $account = new AccountModel(null, $_POST['username'], null, $_POST['password']);
             $account->validateLogin();
             $_SESSION["username"] = $_POST["username"];
             $view = new View('homePage');
             echo $view->render();
         } catch (\Exception $e){
+            $_SESSION["login"] = 1;
             $view = new View('loginPage');
             echo $view->render();
         }

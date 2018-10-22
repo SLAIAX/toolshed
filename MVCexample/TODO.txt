@@ -1,11 +1,7 @@
 -Search Function - Blank query fix -LiveSearch empty input/no matches
 -Create the browse function
 -Refactor JS into seperate files
-- add error if login password is wrong.
--fix sample data prices..../
+-add error if login password is wrong.
 -add comments
 -report
-
-PROBLEMS:
-
--
+-Create another sample account

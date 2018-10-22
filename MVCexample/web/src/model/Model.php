@@ -67,11 +67,10 @@ class Model
                 error_log("Failed creating table account", 0);
                 throw new \mysqli_sql_exception();
             }
-
+            $password = password_hash('Bobthebuilder1', PASSWORD_BCRYPT);
             if (!$this->db->query(
-                "INSERT INTO `account` VALUES (NULL,'Bob', 'BobTheBuilder', 'bob@gmail.com', 'Bobthebuilder1');"
+                "INSERT INTO `account` VALUES (NULL,'Bob', 'BobTheBuilder', 'bob@gmail.com', '$password');"
             )) {
-                // handle appropriately
                 error_log("Failed creating sample data!", 0);
                 throw new \mysqli_sql_exception();
             }
@@ -95,22 +94,22 @@ class Model
 
             if (!$this->db->query(
                 "INSERT INTO `products` (`id`, `sku`, `name`, `category`, `cost`, `stock_quantity`) VALUES 
-                                                        (NULL,'ham13', 'Square Hammer', 'Hammers', '$39.95', 10),
+                                                        (NULL,'ham13', 'Square Hammer', 'Hammers', '$21.65', 10),
                                                         (NULL,'ham14', 'MC Hammer', 'Hammers', '$39.95', 4),
-                                                        (NULL,'ham15', 'Claw Hammer', 'Hammers', '$39.95', 16),
-                                                        (NULL,'ham16', 'Ball-peen Hammer', 'Hammers', '$39.95', 39),
-                                                        (NULL,'spd13', 'Garden Shovel', 'Spades', '$39.95', 28),
-                                                        (NULL,'spd14', 'Garden Spade', 'Spades', '$39.95', 14),
-                                                        (NULL,'spd15', 'Snow Shovel', 'Spades', '$39.95', 57),
-                                                        (NULL,'spd16', 'Poop Scoop', 'Spades', '$39.95', 19),
-                                                        (NULL,'swd13', 'Philips Head', 'Screw Drivers', '$39.95', 160),
-                                                        (NULL,'swd14', 'Flat Head', 'Screw Drivers', '$39.95', 174),
-                                                        (NULL,'swd15', 'Alan Head', 'Screw Drivers', '$39.95', 73),
-                                                        (NULL,'swd16', 'Torx Head', 'Screw Drivers', '$39.95', 56),
-                                                        (NULL,'drl13', 'Twist Drill', 'Drills', '$39.95', 178),
-                                                        (NULL,'drl14', 'Brad Point Drill', 'Drills', '$39.95', 78),
-                                                        (NULL,'drl15', 'Auger Drill', 'Drills', '$39.95', 13),
-                                                        (NULL,'drl16', 'Spade Drill', 'Drills', '$39.95', 45);")) {
+                                                        (NULL,'ham15', 'Claw Hammer', 'Hammers', '$3.00', 16),
+                                                        (NULL,'ham16', 'Ball-peen Hammer', 'Hammers', '$21.62', 39),
+                                                        (NULL,'spd13', 'Garden Shovel', 'Spades', '$5.70', 28),
+                                                        (NULL,'spd14', 'Garden Spade', 'Spades', '$60.00', 14),
+                                                        (NULL,'spd15', 'Snow Shovel', 'Spades', '$99.99', 57),
+                                                        (NULL,'spd16', 'Poop Scoop', 'Spades', '$45.50', 19),
+                                                        (NULL,'swd13', 'Philips Head', 'Screw Drivers', '$21.13', 160),
+                                                        (NULL,'swd14', 'Flat Head', 'Screw Drivers', '$90.45', 174),
+                                                        (NULL,'swd15', 'Alan Head', 'Screw Drivers', '$10.55', 73),
+                                                        (NULL,'swd16', 'Torx Head', 'Screw Drivers', '$6.95', 56),
+                                                        (NULL,'drl13', 'Twist Drill', 'Drills', '$399.95', 178),
+                                                        (NULL,'drl14', 'Brad Point Drill', 'Drills', '$60.95', 78),
+                                                        (NULL,'drl15', 'Auger Drill', 'Drills', '$100.50', 13),
+                                                        (NULL,'drl16', 'Spade Drill', 'Drills', '$299.99', 45);")) {
                 // handle appropriately
                 error_log("Failed creating sample data for products!", 0);
                 throw new \mysqli_sql_exception();
