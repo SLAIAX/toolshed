@@ -1,9 +1,11 @@
 <?php include "header.phtml" ?>
 <!---------- Body starts --------------->
 <div class="container">
-    <h1>Welcome, <?= $_SESSION["username"];?></h1>
-    <h2>Instructions:</h2>
-    <p>Navigate to the Search Page using the navigation bar located at the top. From there, type in the name/ any partial information for the product you're searching for and the results will be displayed below. Alternatively, navigate to the browse page and use the tools in the sidebar to browse and sort through all products in the database. Be sure to log out once you're done!</p>
+    <div class = "jumbotron">
+        <h1>Welcome, <?= $_SESSION["username"];?></h1>
+        <h3>Instructions:</h3>
+        <p>Navigate to the Search Page using the navigation bar located at the top. From there, type in the name/ any partial information for the product you're searching for and the results will be displayed below. Alternatively, navigate to the browse page and use the tools in the sidebar to browse and sort through all products in the database. Be sure to log out once you're done!</p>
+    </div>
 </div>
 <!---------- Body ends -------------------->
 <?php include "footer.phtml" ?>

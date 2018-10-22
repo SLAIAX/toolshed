@@ -44,6 +44,7 @@ class Model
         if (!$this->db->select_db(Model::DB_NAME)) {
             // somethings not right.. handle it
             error_log("Mysql database not available!", 0);
+            throw new \mysqli_sql_exception();
         }
 
         $result = $this->db->query("SHOW TABLES LIKE 'account';");
@@ -64,6 +65,7 @@ class Model
             if (!$result) {
                 // handle appropriately
                 error_log("Failed creating table account", 0);
+                throw new \mysqli_sql_exception();
             }
 
             if (!$this->db->query(
@@ -71,10 +73,9 @@ class Model
             )) {
                 // handle appropriately
                 error_log("Failed creating sample data!", 0);
+                throw new \mysqli_sql_exception();
             }
-            if($this->db == NULL){
-                error_log("NO DB BRO", 100);
-            }
+
             $result = $this->db->query(
                 "CREATE TABLE `products` ( `id`  INT(8) unsigned NOT NULL AUTO_INCREMENT , 
                        `sku` VARCHAR(256) NOT NULL ,
@@ -88,6 +89,7 @@ class Model
             if (!$result) {
                 // handle appropriately
                 error_log("Failed creating table products", 0);
+                throw new \mysqli_sql_exception();
             }
 
 
@@ -111,9 +113,8 @@ class Model
                                                         (NULL,'drl16', 'Spade Drill', 'Drills', '$39.95', 45);")) {
                 // handle appropriately
                 error_log("Failed creating sample data for products!", 0);
+                throw new \mysqli_sql_exception();
             }
         }
-        //----------------------------------------------------------------------------
     }
-
 }

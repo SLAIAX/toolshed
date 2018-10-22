@@ -24,10 +24,10 @@ class SearchController extends Controller
     {
         // get the q parameter from URL
         $q = $_REQUEST["q"];
-
-        $search = new ProductsCollectionModel();
-        $products = $search->getProducts($q);
-        echo"<table class=\"table table-striped\">
+        try {
+            $search = new ProductsCollectionModel();
+            $products = $search->getProducts($q);
+            echo "<table class=\"table table-striped\">
         <tr>
             <th>ID</th>
             <th>SKU</th>
@@ -36,17 +36,21 @@ class SearchController extends Controller
             <th>Cost</th>
             <th>Stock Quantity</th>
         </tr>";
-        foreach ($products as $product){
-            if($product != null) {
-                echo "<tr><td>" . $product['id'] . "</td>
+            foreach ($products as $product) {
+                if ($product != null) {
+                    echo "<tr><td>" . $product['id'] . "</td>
                      <td>" . $product['sku'] . "</td>
                      <td>" . $product['name'] . "</td>
                      <td>" . $product['category'] . "</td>
                      <td>" . $product['cost'] . "</td>
                      <td>" . $product['stock_quantity'] . "</td>
                      </tr>";
+                }
             }
+            echo "</table>";
+        }catch(\Exception $e){
+            $e->getMessage();
         }
-        echo "</table>";
     }
+
 }

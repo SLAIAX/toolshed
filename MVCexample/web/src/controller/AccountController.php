@@ -13,16 +13,6 @@ use agilman\a2\view\View;
 class AccountController extends Controller
 {
     /**
-     * Account Index action
-     */
-    public function indexAction()
-    {
-        $collection = new AccountCollectionModel();
-        $accounts = $collection->getAccounts();
-        $view = new View('accountIndex');
-        echo $view->addData('accounts', $accounts)->render();
-    }
-    /**
      * Account Page Create action
      */
     public function createPageAction()
@@ -38,7 +28,6 @@ class AccountController extends Controller
     {
         try {
             $account = new AccountModel($_POST['name'], $_POST['username'], $_POST['email'], $_POST['password']);
-            //$account->validate();
             $account->save();
             $this->redirect('loginPage');
             $view = new View('accountCreated');
@@ -50,40 +39,16 @@ class AccountController extends Controller
     }
 
     public function loginAction(){
-
-        //VALIDATE THIS FIRST
-        $account = new AccountModel(null, $_POST['username'], null, $_POST['password']);
-        if($account->validateLogin()) {
+        try {
+            $account = new AccountModel(null, $_POST['username'], null, $_POST['password']);
+            $account->validateLogin();
             $_SESSION["username"] = $_POST["username"];
             $view = new View('homePage');
             echo $view->render();
-        } else{
+        } catch (\Exception $e){
             $view = new View('loginPage');
             echo $view->render();
         }
-    }
-
-
-    /**
-     * Account Delete action
-     *
-     * @param int $id Account id to be deleted
-     */
-    public function deleteAction($id)
-    {
-        (new AccountModel())->load($id)->delete();
-        $view = new View('accountDeleted');
-        echo $view->addData('accountId', $id)->render();
-    }
-    /**
-     * Account Update action
-     *
-     * @param int $id Account id to be updated
-     */
-    public function updateAction($id)
-    {
-        $account = (new AccountModel())->load($id);
-        $account->setName('Joe')->save(); // new name will come from Form data
     }
 
     public function validateAccNameAction(){
@@ -92,10 +57,14 @@ class AccountController extends Controller
         $account = new AccountModel(null, $q, null,null);
 
 // lookup all hints from array if $q is different from ""
-        if($account->availableUserName()){
-            echo "Username Available";
-        } else{
-            echo  "Username taken. Please choose another.";
+        try {
+            if ($account->availableUserName()) {
+                echo "<p class = \"text-primary\">Username Available</p>";
+            } else {
+                echo "<p class = \"text-danger\">Username taken. Please choose another.</p>";
+            }
+        }catch(\Exception $e){
+            $e->getMessage();
         }
 // Output "no suggestion" if no hint was found or output correct values
 

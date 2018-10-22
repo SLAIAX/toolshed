@@ -18,7 +18,7 @@ class ProductsCollectionModel extends Model
     {
         parent::__construct();
         if (!$result = $this->db->query("SELECT `id` FROM `products`;")) {
-            // throw new ...
+            throw new \mysqli_sql_exception();
         }
         $this->accountIds = array_column($result->fetch_all(), 0);
         $this->N = $result->num_rows;

@@ -21,7 +21,7 @@
                     var xmlhttp = new XMLHttpRequest();
                     xmlhttp.onreadystatechange = function() {
                         if (this.readyState == 4 && this.status == 200) {
-                            document.getElementById("error").innerText = this.responseText;
+                            document.getElementById("error").innerHTML = this.responseText;
                         }
                     };
                     xmlhttp.open("GET", "/accountNameValidate?q=" + str, true);
@@ -34,7 +34,7 @@
                 var password = document.getElementById("password").value;
                 var confirmPassword = document.getElementById("confirmPassword").value;
                 if (password != confirmPassword || password == "" || confirmPassword == ""){
-                    document.getElementById("passCheck").innerText = "Passwords don't match!";
+                    document.getElementById("passCheck").innerHTML = "<p class = \"text-danger\">Passwords don't match!</p>";
                     document.getElementById("buttonStatus").innerHTML = "<input type = \"submit\" name = \"submit\" class=\"btn btn-primary disabled\" value = \"Create Account\"> <a href = \"<?=$linkTo('loginPage'); ?>\" class = \"btn btn-info\" role=\"button\">Back</a>";
                 } else{
                     document.getElementById("passCheck").innerText = "";
@@ -70,9 +70,9 @@
         Username: <input type = "text" class="form-control col-6" name = "username" required pattern="^[A-Za-z]+$" title="Must only contain Alphanumeric characters" onkeyup = "checkUsername(this.value)" placeholder="Enter Username"><br>
         <p id = "error"></p>
         Email: <input type = "text"class="form-control col-6"  name = "email" required pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z{2,3}$" title="Please enter a valid email address e.g. example@gmail.com" placeholder="Enter Email"><br>
-        Password: <input type = "password" onkeyup = "checkPassword()" class="form-control col-6" name = "password" required placeholder="Enter Password" id = "password"><br>
-        Confirm Password: <input type = "password" onkeyup = "checkPassword()" class="form-control col-6" required name = "password_confirm" placeholder="Enter Password Again" id = "confirmPassword"><br>
-    <p id = "passCheck"></p>
+        Password: <input type = "password" onkeyup = "checkPassword()" class="form-control col-6" name = "password" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,15}$" title = "Password must contain at least one uppercase, one lowercase, one digit, and be between 7 and 15 characters." placeholder="Enter Password" id = "password"><br>
+        Confirm Password: <input type = "password" onkeyup = "checkPassword()" class="form-control col-6" required pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d]{7,15}$" name = "password_confirm" placeholder="Enter Password Again" id = "confirmPassword"><br>
+    <span id = "passCheck"></span>
     <div id = "buttonStatus">
         <input type = "submit" name = "submit" class="btn btn-primary disabled" value = "Create Account">
         <a href = "<?=$linkTo('loginPage'); ?>" class = "btn btn-info" role="button">Back</a>

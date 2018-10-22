@@ -16,7 +16,11 @@ class HomeController extends Controller
      */
     public function indexAction()
     {
-        new Model();
+        try {
+            new Model();
+        }catch(\Exception $e){
+            $e->getMessage();
+        }
         $view = new View('loginPage');
         echo $view->render();
     }

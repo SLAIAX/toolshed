@@ -31,9 +31,6 @@ class AccountModel extends Model
         $this->username = $username;
         $this->email = $email;
         $this->password = $password;
-        if($this->db == NULL){
-            error_log("DB is NULL in constructor", 100);
-        }
     }
 
 
@@ -75,7 +72,7 @@ class AccountModel extends Model
     public function load($id)
     {
         if (!$result = $this->db->query("SELECT * FROM `account` WHERE `id` = $id;")) {
-            // throw new ...
+            throw new \mysqli_sql_exception();
         }
 
         $result = $result->fetch_assoc();
@@ -97,48 +94,30 @@ class AccountModel extends Model
         $email = $this->email;
         $password = password_hash($this->password, PASSWORD_BCRYPT);
         // New account - Perform INSERT
-        if($this->db == NULL){
-            error_log("DB is NULL", 100);
-        }
         if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name', '$username', '$email', '$password');")) {
            throw new \mysqli_sql_exception();
         }
-        //$this->id = $this->db->insert_id;
-    }
-
-    /**
-     * Deletes account from the database
-
-     * @return $this AccountModel
-     */
-    public function delete()
-    {
-        if (!$result = $this->db->query("DELETE FROM `account` WHERE `account`.`id` = $this->id;")) {
-            //throw new ...
-        }
-
-        return $this;
     }
 
     public function validateLogin(){
         if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$this->username';")){
-            return FALSE;   //Throw
+            throw new \mysqli_sql_exception();
         }
         $result = $result->fetch_assoc();
         if(!$result){
-            return FALSE;
+            throw new \mysqli_sql_exception();
         }
         $result = $result['password'];
         if(password_verify($this->password, $result)){
             return TRUE;
         } else{
-            return FALSE;
+            throw new \Exception();
         }
     }
 
     public function availableUserName(){
         if(!$result = $this->db->query("SELECT username FROM `account` WHERE `username` = '$this->username';")){
-            return TRUE;        //Throw
+            throw new \mysqli_sql_exception();
         }
         $result = $result->fetch_assoc();
         if(!$result){
