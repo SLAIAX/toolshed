@@ -8,14 +8,10 @@ use mysqli;
  * Drumm and Waddell
  * IDs: 17044923    16379344
  * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class Model
 {
-    //was protected
-    public $db;
-
-    // is this the best place for these constants?
+    protected $db;
     const DB_HOST = 'mysql';
     const DB_USER = 'root';
     const DB_PASS = 'root';
@@ -31,9 +27,7 @@ class Model
         );
 
         if (!$this->db) {
-            // can't connect to MYSQL???
-            // handle it...
-            // e.g. throw new someException($this->db->connect_error, $this->db->connect_errno);
+            throw new \mysqli_sql_exception();
         }
 
         //----------------------------------------------------------------------------
@@ -42,7 +36,6 @@ class Model
         $this->db->query("CREATE DATABASE IF NOT EXISTS " . Model::DB_NAME . ";");
 
         if (!$this->db->select_db(Model::DB_NAME)) {
-            // somethings not right.. handle it
             error_log("Mysql database not available!", 0);
             throw new \mysqli_sql_exception();
         }
@@ -52,7 +45,6 @@ class Model
         if ($result->num_rows == 0) {
             // table doesn't exist
             // create it and populate with sample data
-
             $result = $this->db->query(
                 "CREATE TABLE `account` ( `id`  INT(8) unsigned NOT NULL AUTO_INCREMENT , 
                        `name` VARCHAR(256) NOT NULL ,

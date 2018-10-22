@@ -4,17 +4,30 @@ namespace agilman\a2\model;
 
 /**
  * Class AccountModel
- *
- * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
+ * @package agilman\a2\model
  */
 class AccountModel extends Model
 {
 
+    /**
+     * @var the user ID
+     */
     private $id;
+    /**
+     * @var the users name
+     */
     private $name;
+    /**
+     * @var the users username
+     */
     private $username;
+    /**
+     * @var the users email
+     */
     private $email;
+    /**
+     * @var the users password
+     */
     private $password;
 
     /**
@@ -52,7 +65,6 @@ class AccountModel extends Model
 
     /**
      * @param string $name Account name
-     *
      * @return $this AccountModel
      */
     public function setName(string $name)
@@ -63,11 +75,9 @@ class AccountModel extends Model
     }
 
     /**
-     * Loads account information from the database
-     *
      * @param int $id Account ID
-     *
      * @return $this AccountModel
+     * Loads account information from the database
      */
     public function load($id)
     {
@@ -84,8 +94,6 @@ class AccountModel extends Model
 
     /**
      * Saves account information to the database
-
-     * @return $this AccountModel
      */
     public function save()
     {
@@ -99,6 +107,11 @@ class AccountModel extends Model
         }
     }
 
+    /**
+     * @return bool
+     * @throws \Exception
+     * Validates the users login ensuring that it the password matches the corresponding password
+     */
     public function validateLogin(){
         if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$this->username';")){
             throw new \mysqli_sql_exception();
@@ -115,6 +128,10 @@ class AccountModel extends Model
         }
     }
 
+    /**
+     * @return bool
+     * Checks that the username is available
+     */
     public function availableUserName(){
         if(!$result = $this->db->query("SELECT username FROM `account` WHERE `username` = '$this->username';")){
             throw new \mysqli_sql_exception();

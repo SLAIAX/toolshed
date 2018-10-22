@@ -2,18 +2,26 @@
 namespace agilman\a2\model;
 use agilman\a2\model\ProductsModel;
 
+
 /**
- * Class AccountCollectionModel
- *
- * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
+ * Class ProductsCollectionModel
+ * @package agilman\a2\model
  */
 class ProductsCollectionModel extends Model
 {
+    /**
+     * @var an array of IDs that for each product
+     */
     private $accountIds;
 
+    /**
+     * @var the number products
+     */
     private $N;
 
+    /**
+     * ProductsCollectionModel constructor.
+     */
     public function __construct()
     {
         parent::__construct();
@@ -24,10 +32,12 @@ class ProductsCollectionModel extends Model
         $this->N = $result->num_rows;
     }
 
+
     /**
-     * Get account collection
-     *
-     * @return \Generator|AccountModel[] Accounts
+
+     * @param $str
+     * @return \Generator
+     * Calls the search product query on every ID
      */
     public function getProducts($str)
     {
