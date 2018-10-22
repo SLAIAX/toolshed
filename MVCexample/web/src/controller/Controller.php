@@ -4,14 +4,12 @@ namespace agilman\a2\controller;
 
 /**
  * Class Controller
- *
  * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class Controller
 {
     /**
-     * Redirect to another route
+     * Redirect to another route.
      *
      * @param $route
      * @param array $params

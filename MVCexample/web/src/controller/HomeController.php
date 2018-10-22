@@ -5,14 +5,12 @@ use agilman\a2\view\View;
 session_start();
 /**
  * Class HomeController
- *
  * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
  */
 class HomeController extends Controller
 {
     /**
-     * Account Index action
+     * Goes to the login page.
      */
     public function indexAction()
     {
@@ -25,6 +23,9 @@ class HomeController extends Controller
         echo $view->render();
     }
 
+    /**
+     * Goes to the home page.
+     */
     public function homeAction(){
         if(isset($_SESSION["username"])) {
             $view = new View('homePage');
@@ -34,6 +35,9 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Goes to the browse page.
+     */
     public function browseAction(){
         if(isset($_SESSION["username"])) {
             $view = new View('browsePage');
@@ -43,6 +47,9 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Goes to the search page.
+     */
     public function searchAction(){
         if(isset($_SESSION["username"])) {
             $view = new View('searchPage');
@@ -52,6 +59,9 @@ class HomeController extends Controller
         }
     }
 
+    /**
+     * Logs out a user, and redirects to the login page.
+     */
     public function logoutAction(){
         if(isset($_SESSION["username"])) {
             unset($_SESSION["username"]);

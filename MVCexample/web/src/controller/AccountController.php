@@ -4,16 +4,16 @@ session_start();
 use agilman\a2\model\{AccountModel, AccountCollectionModel};
 use agilman\a2\view\View;
 
+
 /**
  * Class AccountController
- *
- * @package agilman/a2
- * @author  Andrew Gilman <a.gilman@massey.ac.nz>
+ * @package agilman\a2\controller
  */
 class AccountController extends Controller
 {
+
     /**
-     * Account Page Create action
+     * Goes to the create new account page
      */
     public function createPageAction()
     {
@@ -22,7 +22,7 @@ class AccountController extends Controller
     }
 
     /**
-     * Account Create action
+     * Creates a new account.
      */
     public function createAction()
     {
@@ -38,6 +38,9 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Logs in a user.
+     */
     public function loginAction(){
         try {
             unset($_SESSION["login"]);
@@ -53,12 +56,15 @@ class AccountController extends Controller
         }
     }
 
+    /**
+     * Validates the username to see if it already exists.
+     */
     public function validateAccNameAction(){
-// get the q parameter from URL
+        // get the q parameter from URL
         $q =  $_REQUEST["q"];
         $account = new AccountModel(null, $q, null,null);
 
-// lookup all hints from array if $q is different from ""
+        // lookup all hints from array if $q is different from ""
         try {
             if ($account->availableUserName()) {
                 echo "<p class = \"text-primary\">Username Available</p>";
@@ -68,7 +74,7 @@ class AccountController extends Controller
         }catch(\Exception $e){
             $e->getMessage();
         }
-// Output "no suggestion" if no hint was found or output correct values
+        // Output "no suggestion" if no hint was found or output correct values
 
     }
 }

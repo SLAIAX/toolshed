@@ -12,7 +12,7 @@ use agilman\a2\model\ProductsCollectionModel;
 class SearchController extends Controller
 {
     /**
-     * Account Index action
+     * Goes to the search page.
      */
     public function indexAction()
     {
@@ -20,6 +20,9 @@ class SearchController extends Controller
         echo $view->render();
     }
 
+    /**
+     * Searches the data base for products based on search input.
+     */
     public function searchAction()
     {
         // get the q parameter from URL
