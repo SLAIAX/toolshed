@@ -2,3 +2,8 @@
 body {
     background-color: lightgrey;
 }
+.image1{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+}

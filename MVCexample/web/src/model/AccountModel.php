@@ -95,7 +95,7 @@ class AccountModel extends Model
         $name = $this->name ?? "NULL";
         $username = $this->username;
         $email = $this->email;
-        $password = $this->password;
+        $password = password_hash($this->password, PASSWORD_BCRYPT);
         // New account - Perform INSERT
         if($this->db == NULL){
             error_log("DB is NULL", 100);
@@ -129,8 +129,10 @@ class AccountModel extends Model
             return FALSE;
         }
         $result = $result['password'];
-        if($result == $this->password){
+        if(password_verify($this->password, $result)){
             return TRUE;
+        } else{
+            return FALSE;
         }
     }
 
