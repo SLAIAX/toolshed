@@ -1,8 +1,4 @@
 -Search Function - Blank query fix -LiveSearch empty input/no matches
--Search function display message if no results found
 -Create the browse function
 -Refactor JS into seperate files
 -Create another sample account
-
-NEED:
--report
