@@ -13,38 +13,33 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
         <link rel="stylesheet" type="text/css" href="/static/styles/site.css">
     </head>
-<body>
-<nav class = "navbar navbar-default">
-    <div class = "container-fluid">
-        <div class = "navbar-header">
-            <a class = "navbar-brand" href="<?= $linkTo('homePage'); ?>">
-                <img class = "image1" src ="http://devfloat.net/wp-content/uploads/2016/04/hammers_1.jpg" width="85px" height="50px" style="position: absolute; top: 0px; right: 0px;">
-            </a>
+    <body>
+        <nav class = "navbar navbar-default">
+            <div class = "container-fluid">
+                <div class = "navbar-header">
+                    <a class = "navbar-brand" href="<?= $linkTo('homePage'); ?>">
+                        Toolshed.
+                        <img class = "image1" src ="http://devfloat.net/wp-content/uploads/2016/04/hammers_1.jpg" width="85px" height="50px" style="position: absolute; top: 0px; right: 0px;">
+                    </a>
+                </div>
+                <ul class = "nav navbar-nav">
+                    <li><a href="<?= $linkTo('loginPage'); ?>">Login</a></li>
+                    <li><a href="<?= $linkTo('accountCreate'); ?>">Create New Account</a></li>
+                </ul>
+            </div>
+        </nav>
+        <div class="container">
+            <h1>Welcome to Toolshed.</h1>
+            <form action="<?= $linkTo('loginSubmit'); ?>" method="post">
+                <h4 class = "text-primary"> Username:</h4>
+                <input type = "text" class="form-control col-6" name = "username" placeholder = "Username" required><br>
+                <h4 class = "text-primary">Password:</h4>
+                <input type = "password" class="form-control col-6" name = "password" placeholder = "Password" required><br>
+                <?php if($_SESSION["login"] == 1){?><p class = "text-danger">Wrong password.</p><?php } ?>
+                <input type = "submit" name = "login" class = "btn btn-primary" value = "Log In"><br>
+            </form>
+            Don't have an account? <a href = "<?= $linkTo('accountCreate'); ?>">Register here.</a><br>
         </div>
-        <ul class = "nav navbar-nav">
-
-            <li><a href="<?= $linkTo('loginPage'); ?>">Login</a></li>
-            <li><a href="<?= $linkTo('accountCreate'); ?>">Create New Account</a></li>
-
-        </ul>
-    </div>
-</nav>
-<div class="container">
-    <h1>Welcome to Toolshed.</h1>
-    <form action="<?= $linkTo('loginSubmit'); ?>" method="post">
-        <h4 class = "text-primary"> Username:</h4>
-        <input type = "text" class="form-control col-6" name = "username" placeholder = "Username" required><br>
-
-        <h4 class = "text-primary">Password:</h4>
-        <input type = "password" class="form-control col-6" name = "password" placeholder = "Password" required><br>
-        <?php if($_SESSION["login"] == 1){?><p class = "text-danger">Wrong password.</p><?php } ?>
-        <input type = "submit" name = "login" class="btn btn-primary" value = "Log In"><br>
-    </form>
-
-
-
-    Don't have an account? <a href=<?= $linkTo('accountCreate'); ?>>Register</a><br>
-</div>
-<br>
-<!---------- Body ends -------------------->
-<?php include "footer.phtml" ?>
+        <br>
+    </body>
+</html>
