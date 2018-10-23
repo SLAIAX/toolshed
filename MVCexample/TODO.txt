@@ -1,4 +1,3 @@
 -Search Function - Blank query fix -LiveSearch empty input/no matches
 -Create the browse function
 -Refactor JS into seperate files
--Create another sample account
