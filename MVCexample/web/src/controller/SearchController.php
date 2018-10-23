@@ -29,8 +29,8 @@ class SearchController extends Controller
         $q = $_REQUEST["q"];
 
         try {
-            if (strlen($q) > 0) {
-                $search = new ProductsCollectionModel();
+            $search = new ProductsCollectionModel($q);
+            if($search->getN() > 0) {
                 $products = $search->getProducts($q);
                 echo "<table class=\"table table-striped\">
         <tr>
@@ -54,9 +54,9 @@ class SearchController extends Controller
                 }
                 echo "</table>";
             } else {
-                echo "";
+                echo "<h2>No search results.</h2>";
             }
-        } catch (\Exception $e) {
+        }catch(\Exception $e){
             $e->getMessage();
         }
     }

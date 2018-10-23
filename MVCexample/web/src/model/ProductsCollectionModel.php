@@ -15,6 +15,14 @@ class ProductsCollectionModel extends Model
     private $accountIds;
 
     /**
+     * @return the
+     */
+    public function getN()
+    {
+        return $this->N;
+    }
+
+    /**
      * @var the number products
      */
     private $N;
@@ -22,10 +30,10 @@ class ProductsCollectionModel extends Model
     /**
      * ProductsCollectionModel constructor.
      */
-    public function __construct()
+    public function __construct($str)
     {
         parent::__construct();
-        if (!$result = $this->db->query("SELECT `id` FROM `products`;")) {
+        if (!$result = $this->db->query("SELECT `id` FROM `products` WHERE `sku` LIKE '%$str%' OR `name` LIKE '%$str%' OR `category` LIKE '%$str%';")) {
             throw new \mysqli_sql_exception();
         }
         $this->accountIds = array_column($result->fetch_all(), 0);
