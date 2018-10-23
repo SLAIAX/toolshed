@@ -65,8 +65,6 @@ class AccountController extends Controller
         // get the q parameter from URL
         $q =  $_REQUEST["q"];
         $account = new AccountModel(null, $q, null, null);
-
-        // lookup all hints from array if $q is different from ""
         try {
             if ($account->availableUserName()) {
                 echo "<p class = \"text-primary\">Username Available</p>";
@@ -76,6 +74,5 @@ class AccountController extends Controller
         } catch (\Exception $e) {
             $e->getMessage();
         }
-        // Output "no suggestion" if no hint was found or output correct values
     }
 }
