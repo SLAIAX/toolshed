@@ -103,7 +103,7 @@ class AccountModel extends Model
         $password = password_hash($this->password, PASSWORD_BCRYPT);
         // New account - Perform INSERT
         if (!$result = $this->db->query("INSERT INTO `account` VALUES (NULL,'$name', '$username', '$email', '$password');")) {
-           throw new \mysqli_sql_exception();
+            throw new \mysqli_sql_exception();
         }
     }
 
@@ -112,18 +112,19 @@ class AccountModel extends Model
      * @throws \Exception
      * Validates the users login ensuring that it the password matches the corresponding password
      */
-    public function validateLogin(){
-        if(!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$this->username';")){
+    public function validateLogin()
+    {
+        if (!$result = $this->db->query("SELECT * FROM `account` WHERE `username` = '$this->username';")) {
             throw new \mysqli_sql_exception();
         }
         $result = $result->fetch_assoc();
-        if(!$result){
+        if (!$result) {
             throw new \mysqli_sql_exception();
         }
         $result = $result['password'];
-        if(password_verify($this->password, $result)){
-            return TRUE;
-        } else{
+        if (password_verify($this->password, $result)) {
+            return true;
+        } else {
             throw new \Exception();
         }
     }
@@ -132,14 +133,15 @@ class AccountModel extends Model
      * @return bool
      * Checks that the username is available
      */
-    public function availableUserName(){
-        if(!$result = $this->db->query("SELECT username FROM `account` WHERE `username` = '$this->username';")){
+    public function availableUserName()
+    {
+        if (!$result = $this->db->query("SELECT username FROM `account` WHERE `username` = '$this->username';")) {
             throw new \mysqli_sql_exception();
         }
         $result = $result->fetch_assoc();
-        if(!$result){
-            return TRUE;
+        if (!$result) {
+            return true;
         }
-        return FALSE;
+        return false;
     }
 }

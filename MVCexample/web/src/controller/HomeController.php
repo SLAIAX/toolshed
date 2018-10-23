@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         try {
             new Model();
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $e->getMessage();
         }
         $view = new View('loginPage');
@@ -26,11 +26,12 @@ class HomeController extends Controller
     /**
      * Goes to the home page.
      */
-    public function homeAction(){
-        if(isset($_SESSION["username"])) {
+    public function homeAction()
+    {
+        if (isset($_SESSION["username"])) {
             $view = new View('homePage');
             echo $view->render();
-        }else{
+        } else {
             $this->redirect('loginPage');
         }
     }
@@ -38,11 +39,12 @@ class HomeController extends Controller
     /**
      * Goes to the browse page.
      */
-    public function browseAction(){
-        if(isset($_SESSION["username"])) {
+    public function browseAction()
+    {
+        if (isset($_SESSION["username"])) {
             $view = new View('browsePage');
             echo $view->render();
-        }else{
+        } else {
             $this->redirect('loginPage');
         }
     }
@@ -50,11 +52,12 @@ class HomeController extends Controller
     /**
      * Goes to the search page.
      */
-    public function searchAction(){
-        if(isset($_SESSION["username"])) {
+    public function searchAction()
+    {
+        if (isset($_SESSION["username"])) {
             $view = new View('searchPage');
             echo $view->render();
-        }else{
+        } else {
             $this->redirect('loginPage');
         }
     }
@@ -62,13 +65,13 @@ class HomeController extends Controller
     /**
      * Logs out a user, and redirects to the login page.
      */
-    public function logoutAction(){
-        if(isset($_SESSION["username"])) {
+    public function logoutAction()
+    {
+        if (isset($_SESSION["username"])) {
             unset($_SESSION["username"]);
             $this->redirect('loginPage');
-        }else{
+        } else {
             $this->redirect('loginPage');
         }
-
     }
 }

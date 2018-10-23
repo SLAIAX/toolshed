@@ -101,7 +101,8 @@ class Model
                                                         (NULL,'drl13', 'Twist Drill', 'Drills', '$399.95', 178),
                                                         (NULL,'drl14', 'Brad Point Drill', 'Drills', '$60.95', 78),
                                                         (NULL,'drl15', 'Auger Drill', 'Drills', '$100.50', 13),
-                                                        (NULL,'drl16', 'Spade Drill', 'Drills', '$299.99', 45);")) {
+                                                        (NULL,'drl16', 'Spade Drill', 'Drills', '$299.99', 45);"
+            )) {
                 // handle appropriately
                 error_log("Failed creating sample data for products!", 0);
                 throw new \mysqli_sql_exception();

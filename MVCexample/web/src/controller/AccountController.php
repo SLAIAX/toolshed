@@ -32,7 +32,7 @@ class AccountController extends Controller
             $this->redirect('loginPage');
             $view = new View('accountCreated');
             echo $view->render();
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $view = new View('createAccountPage');
             echo $view->render();
         }
@@ -41,7 +41,8 @@ class AccountController extends Controller
     /**
      * Logs in a user.
      */
-    public function loginAction(){
+    public function loginAction()
+    {
         try {
             unset($_SESSION["login"]);
             $account = new AccountModel(null, $_POST['username'], null, $_POST['password']);
@@ -49,7 +50,7 @@ class AccountController extends Controller
             $_SESSION["username"] = $_POST["username"];
             $view = new View('homePage');
             echo $view->render();
-        } catch (\Exception $e){
+        } catch (\Exception $e) {
             $_SESSION["login"] = 1;
             $view = new View('loginPage');
             echo $view->render();
@@ -59,10 +60,11 @@ class AccountController extends Controller
     /**
      * Validates the username to see if it already exists.
      */
-    public function validateAccNameAction(){
+    public function validateAccNameAction()
+    {
         // get the q parameter from URL
         $q =  $_REQUEST["q"];
-        $account = new AccountModel(null, $q, null,null);
+        $account = new AccountModel(null, $q, null, null);
 
         // lookup all hints from array if $q is different from ""
         try {
@@ -71,10 +73,9 @@ class AccountController extends Controller
             } else {
                 echo "<p class = \"text-danger\">Username taken. Please choose another.</p>";
             }
-        }catch(\Exception $e){
+        } catch (\Exception $e) {
             $e->getMessage();
         }
         // Output "no suggestion" if no hint was found or output correct values
-
     }
 }

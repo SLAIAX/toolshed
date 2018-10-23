@@ -1,7 +1,8 @@
 -Search Function - Blank query fix -LiveSearch empty input/no matches
 -Create the browse function
 -Refactor JS into seperate files
--add error if login password is wrong.
--add comments
--report
 -Create another sample account
+
+NEED:
+-PSR standards
+-report
